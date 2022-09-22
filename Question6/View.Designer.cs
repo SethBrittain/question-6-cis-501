@@ -29,13 +29,23 @@ namespace Question6
         /// </summary>
         private void InitializeComponent()
         {
+            this.Ux = new System.Windows.Forms.Panel();
             this.SuspendLayout();
+            // 
+            // Ux
+            // 
+            this.Ux.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Ux.Location = new System.Drawing.Point(0, 0);
+            this.Ux.Name = "Ux";
+            this.Ux.Size = new System.Drawing.Size(565, 692);
+            this.Ux.TabIndex = 0;
             // 
             // View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(565, 692);
+            this.Controls.Add(this.Ux);
             this.Name = "View";
             this.Text = "KindleApp";
             this.ResumeLayout(false);
@@ -43,6 +53,8 @@ namespace Question6
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel Ux;
     }
 }
 

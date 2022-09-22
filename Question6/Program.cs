@@ -6,6 +6,19 @@ using System.Windows.Forms;
 
 namespace Question6
 {
+    public enum LibraryState
+    {
+        Unsynchronized,
+        Synchronizing,
+        Synchronized,
+        OpeningBook
+    }
+    public enum BookState
+    {
+        Idle,
+        ChangingPage
+    }
+
     static class Program
     {
         /// <summary>
