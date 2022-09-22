@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Question6
+namespace View
 {
     public partial class View : Form
     {

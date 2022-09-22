@@ -1,4 +1,3 @@
-.vs/*
-*.cache
-Question6/bin/*
-Question6/obj/*
+.vs
+*/bin
+*/obj

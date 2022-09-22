@@ -1,5 +1,4 @@
-﻿
-namespace Question6
+﻿namespace View
 {
     partial class View
     {
@@ -29,17 +28,10 @@ namespace Question6
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // View
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "View";
-            this.Text = "KindleApp";
-            this.ResumeLayout(false);
-
+            this.Text = "Form1";
         }
 
         #endregion
