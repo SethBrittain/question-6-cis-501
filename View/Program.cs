@@ -6,6 +6,17 @@ using System.Windows.Forms;
 
 namespace View
 {
+    public enum ViewState
+    {
+        Unsynchronized,
+        Synchronizing,
+        Synchronized,
+        LoadingBook,
+        IncreasingPage,
+        DecreasingPage,
+        AddingBookmark,
+        GettingPageNumber
+    }
     internal static class Program
     {
         /// <summary>
@@ -16,7 +27,7 @@ namespace View
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new View());
+            Application.Run(new View()); 
         }
     }
 }
