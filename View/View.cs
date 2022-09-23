@@ -155,5 +155,10 @@ he thought. ‘What an inquisitive lot they all are!’ He had half a mind";
         {
             Update(ViewState.AddingBookmark);
         }
+
+        private void UxPageNumberChanged(object sender, EventArgs e)
+        {
+            //
+        }
     }
 }

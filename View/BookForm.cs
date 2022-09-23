@@ -18,6 +18,7 @@ namespace View
         public Button BookmarkButton => UxAddBookmarkButton;
         public TextBox PageNumber => UxPageNumber;
         public RichTextBox PageText => UxPageText;
+     
 
         public BookForm()
         {
