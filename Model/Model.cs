@@ -8,33 +8,16 @@ namespace Model
 {
     class Model
     {
-        private List<Book> books = new List<Book>();
-
-        public List<Book> GetBooks()
-        {
-            return books;
-        }
+        public List<Book> books = new List<Book>();
 
         public void CloudSync()
         {
-            using (StreamReader sr = new StreamReader("CloudFile.txt"))
+            using (StreamReader sr = new StreamReader("cloudfile.txt"))
             {
-                string ln;
-
-                while ((ln = sr.ReadLine()) != null)
+                while (sr.Peek() >= 0)
                 {
-                    int counter = 2;
-                    string[] subs = ln.Split(',');
-                    Book book = new Book(subs[0], Int32.Parse(subs[1]));
-
-                    for (int i = 0; i < 5; i++)
-                    {
-                        book.SetBookmarkPage(i, subs[counter]);
-                        counter++;
-                    }
-                    books.Add(book);
+                    sb.Append(sr.Read());
                 }
-                sr.Close();
             }
         }
     }

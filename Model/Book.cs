@@ -9,28 +9,27 @@ namespace Model
     {
         private String title;
 
-        private int pages;
+        private int currentPage = 1;
 
-        private int[] bookmarkPages = new int[5];
+        private int[] bookmarks = new int[5];
 
-        public Book(String title, int pages)
+        private String[] pages;
+
+        public Book(String title)
         {
             this.title = title;
-            this.pages = pages;
         }
 
-        public String Title { get => title; }
+        public int CurrentPage { get => currentPage; set => currentPage = value; }
 
-        public int Pages { get => pages; }
-
-        public int GetBookmarkPage(int index)
+        public void AddBookmark(int index, int pageNumber)
         {
-            return bookmarkPages[index];
+            bookmarks[index] = pageNumber;
         }
 
-        public void SetBookmarkPage(int index, string pageNumber)
+        public int GetTotalPages()
         {
-            bookmarkPages[index] = Int32.Parse(pageNumber);
+            return pages.Length;
         }
     }
 }

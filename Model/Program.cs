@@ -11,7 +11,7 @@ namespace Model
             
             m.CloudSync();
 
-            Console.WriteLine("Exiting");
+            Console.WriteLine("Exiting..");
         }
     }
 }
