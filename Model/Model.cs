@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Text;
 
 namespace Model
@@ -9,14 +10,32 @@ namespace Model
     {
         private List<Book> books = new List<Book>();
 
-        public void BookListAdd(Book book)
+        public List<Book> GetBooks()
         {
-            books.Add(book);
+            return books;
         }
 
-        public Book BookGet(int index)
+        public void CloudSync()
         {
-            return books[index];
+            using (StreamReader sr = new StreamReader("CloudFile.txt"))
+            {
+                string ln;
+
+                while ((ln = sr.ReadLine()) != null)
+                {
+                    int counter = 2;
+                    string[] subs = ln.Split(',');
+                    Book book = new Book(subs[0], Int32.Parse(subs[1]));
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        book.SetBookmarkPage(i, subs[counter]);
+                        counter++;
+                    }
+                    books.Add(book);
+                }
+                sr.Close();
+            }
         }
     }
 }
