@@ -12,18 +12,22 @@ namespace Question6
 {
     public partial class View : Form
     {
-        //Model m = new Model();
-        private BookForm bv;
-        private int ClickedIndex;
+        private BookForm bf;
         private Controller c;
+        private Model model;
+
+        int pageSearch = 1;
+
         public View(Model m)
         {
-            bv = new BookForm();
-            bv.BackButton.Click += UxBackButton_Click;
-            bv.FormClosed += CloseForm;
-            bv.PrevButton.Click += UxPrevButton_Click;
-            bv.NextButton.Click += UxNextButton_Click;
-            bv.BookmarkButton.Click += UxAddBookmarkButton_Click;
+            model = m;
+            bf = new BookForm();
+            bf.BackButton.Click += UxBackButton_Click;
+            bf.FormClosed += CloseForm;
+            bf.PrevButton.Click += UxPrevButton_Click;
+            bf.NextButton.Click += UxNextButton_Click;
+            bf.BookmarkButton.Click += UxAddBookmarkButton_Click;
+            bf.PageNumber.ValueChanged += UxPageNumberChanged;
             InitializeComponent();
         }
 
@@ -32,78 +36,39 @@ namespace Question6
             switch (state)
             {
                 case ViewState.Unsynchronized:
-                    //List<Books> b = inputHandle(ViewState.Synchronizing);
-                    //foreach (Book book in b)
-                    //{
-                    //    UxBookshelf.Controls.Add(new BookControl(b.Title));
-                    //}
-                    BookControl bc = new BookControl("The Lord of the Rings");
-                    bc.Click += this.BookControl_Click;
-                    bc.Title.Click += this.BookControl_Click;
-                    UxBookshelf.Controls.Add(bc);
+                    Console.WriteLine("Synchronizing");
                     Update(ViewState.Synchronized);
                     break;
                 case ViewState.Synchronized:
+                    List<Book> books = model.books;
+                    foreach (Book book in books)
+                    {
+                        BookControl bc = new BookControl(book);
+                        bc.Click += this.BookControl_Click;
+                        bc.Title.Click += this.BookControl_Click;
+                        UxBookshelf.Controls.Add(bc);
+                    }
                     UxSynchronizeButton.Enabled = false;
                     break;
                 case ViewState.LoadingBook:
-                    // Get page text from controller
-                    bv.PageText.Text =@"she had paid for had been carried off; and she wanted the keys. It
-took a long while to satisfy her, as she had brought a complete inventory with her and went right through it. In the end she departed with
-Lotho and the spare key and the promise that the other key would
-be left at the Gamgees’ in Bagshot Row. She snorted, and showed
-plainly that she thought the Gamgees capable of plundering the hole
-during the night.Frodo did not offer her any tea.
-He took his own tea with Pippin and Sam Gamgee in the kitchen.
-It had been officially announced that Sam was coming to Buckland
-‘to do for Mr.Frodo and look after his bit of garden’; an arrangement
-that was approved by the Gaffer, though it did not console him for
-the prospect of having Lobelia as a neighbour.
-‘Our last meal at Bag End!’ said Frodo, pushing back his chair.
-They left the washing up for Lobelia.Pippin and Sam strapped up
-their three packs and piled them in the porch.Pippin went out for
-a last stroll in the garden.Sam disappeared.
-The sun went down.Bag End seemed sad and gloomy and dishevelled.Frodo wandered round the familiar rooms, and saw the light
-of the sunset fade on the walls, and shadows creep out of the corners.
-It grew slowly dark indoors.He went out and walked down to the
-gate at the bottom of the path, and then on a short way down the
-Hill Road.He half expected to see Gandalf come striding up through
-the dusk.
-The sky was clear and the stars were growing bright. ‘It’s going
-to be a fine night,’ he said aloud. ‘That’s good for a beginning. I feel
-like walking.I can’t bear any more hanging about.I am going to
-start, and Gandalf must follow me.’ He turned to go back, and then
-stopped, for he heard voices, just round the corner by the end of
-Bagshot Row.One voice was certainly the old Gaffer’s; the other was
-strange, and somehow unpleasant. He could not make out what it
-said, but he heard the Gaffer’s answers, which were rather shrill.The
-old man seemed put out.
-‘No, Mr.Baggins has gone away. Went this morning, and my Sam
-went with him: anyway all his stuff went.Yes, sold out and gone, I
-tell’ee.Why? Why’s none of my business, or yours. Where to? That
-ain’t no secret.He’s moved to Bucklebury or some such place, away
-down yonder. Yes it is – a tidy way.I’ve never been so far myself;
-                    they’re queer folks in Buckland.No, I can’t give no message. Good
-                   night to you!’
-Footsteps went away down the Hill. Frodo wondered vaguely why
-the fact that they did not come on up the Hill seemed a great relief.
-‘I am sick of questions and curiosity about my doings, I suppose,’
-he thought. ‘What an inquisitive lot they all are!’ He had half a mind";
-                    // Ask controller if pages > 1
-                    // enable/disable next
+                    bf.PageText.Text = c.currBook.Pages[0];
+                    bf.PrevButton.Enabled = false;
+                    bf.NextButton.Enabled = c.currBook.title;
                     break;
                 case ViewState.IncreasingPage:
-                    //Get next page from controller
                     bool isLast;
-                    string page = getNextPage(out isLast);
-                    bv.NextButton.Enabled = isLast;
+                    string page = c.nextPage(out isLast);
+                    bf.PageText.Text = page;
+                    bf.NextButton.Enabled = isLast;
+                    bf.PageNumber.Text = (int.Parse(bf.PageNumber.Text) + 1).ToString();
                     Update(ViewState.GettingPageNumber);
                     break;
                 case ViewState.DecreasingPage:
-                    //Get prev page from controller
-                    // bool isFirst;
-                    // string page = c.getPrevPage(out isFirst);
-                    bv.PrevButton.Enabled = isFirst;
+                    bool isFirst;
+                    string page = c.prevPage(out isFirst);
+                    bf.PageText.Text = page;
+                    bf.PrevButton.Enabled = isFirst;
+                    bf.PageNumber.Text = (int.Parse(bf.PageNumber.Text) - 1).ToString();
                     Update(ViewState.GettingPageNumber);
                     break;
                 case ViewState.AddingBookmark:
@@ -114,6 +79,7 @@ he thought. ‘What an inquisitive lot they all are!’ He had half a mind";
                     break;
             }
         }
+
 
 
         private void CloseForm(object sender, FormClosedEventArgs e)
@@ -128,16 +94,14 @@ he thought. ‘What an inquisitive lot they all are!’ He had half a mind";
 
         private void BookControl_Click(object sender, EventArgs e)
         {
-            BookControl bc = sender as BookControl;
-            ClickedIndex = UxBookshelf.Controls.IndexOf(bc);
             this.Hide();
-            bv.Show();
+            bf.Show();
             Update(ViewState.LoadingBook);
         }
 
         private void UxBackButton_Click(object sender, EventArgs e)
         {
-            bv.Hide();
+            bf.Hide();
             this.Show();
         }
 
@@ -158,7 +122,8 @@ he thought. ‘What an inquisitive lot they all are!’ He had half a mind";
 
         private void UxPageNumberChanged(object sender, EventArgs e)
         {
-            //
+            NumericUpDown tb = sender as NumericUpDown;
+            pageSearch = int.Parse(tb.Text);
         }
     }
 }

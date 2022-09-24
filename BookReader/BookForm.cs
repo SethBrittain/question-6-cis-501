@@ -16,7 +16,7 @@ namespace Question6
         public Button PrevButton => UxPrevPageButton;
         public Button NextButton => UxNextPageButton;
         public Button BookmarkButton => UxAddBookmarkButton;
-        public TextBox PageNumber => UxPageNumber;
+        public NumericUpDown PageNumber => UxPageNumber;
         public RichTextBox PageText => UxPageText;
      
 

@@ -78,14 +78,16 @@ namespace Question6
             return true;
         }
 
-        public bool findPage(int index, int num)
+        public string findPage(int pageNum, out bool found)
         {
-            if (num <= currBook.GetTotalPages() && num >= 0)
+            found = true;
+            if (pageNum <= currBook.GetTotalPages() && pageNum > 0)
             {
-                currBook.CurrentPage = num;
-                return false;
+                return currBook.Pages[pageNum-1];
             }
-            return false;
+
+            found = false;
+            return string.Empty;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace Question6
 {
     public class Book
     {
-        private String title;
+        public String title { get; private set; }
 
         private int currentPage = 1;
 
