@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,13 +27,14 @@ namespace Question6
             {
                 isLast = true;
                 currBook.CurrentPage += 1;
-                return currBook.pages[currBook.CurrentPage];
+                Debug.WriteLine(currBook.Pages.Count);
+                return currBook.Pages[currBook.CurrentPage-1];
             }
             else
             {
                 isLast = false;
                 currBook.CurrentPage += 1;
-                return currBook.pages[currBook.CurrentPage];
+                return currBook.Pages[currBook.CurrentPage-1];
             }
         }
 
@@ -42,13 +44,13 @@ namespace Question6
             {
                 isFirst = true;
                 currBook.CurrentPage -= 1;
-                return currBook.pages[currBook.CurrentPage];
+                return currBook.Pages[currBook.CurrentPage];
             }
             else
             {
                 isFirst = false;
                 currBook.CurrentPage -= 1;
-                return currBook.pages[currBook.CurrentPage];
+                return currBook.Pages[currBook.CurrentPage];
             }
         }
 

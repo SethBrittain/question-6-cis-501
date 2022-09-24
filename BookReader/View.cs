@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace Question6
         private BookForm bf;
         private Controller c;
         private Model model;
-
+        private Book currentBook;
         int pageSearch = 1;
 
         public View(Model m)
@@ -37,6 +38,7 @@ namespace Question6
             {
                 case ViewState.Unsynchronized:
                     Console.WriteLine("Synchronizing");
+                    model.CloudSync();
                     Update(ViewState.Synchronized);
                     break;
                 case ViewState.Synchronized:
@@ -48,25 +50,28 @@ namespace Question6
                         bc.Title.Click += this.BookControl_Click;
                         UxBookshelf.Controls.Add(bc);
                     }
+                    UxBookshelf.Refresh();
+                    this.Refresh();
                     UxSynchronizeButton.Enabled = false;
                     break;
                 case ViewState.LoadingBook:
+                    c.currBook = this.currentBook;
                     bf.PageText.Text = c.currBook.Pages[0];
                     bf.PrevButton.Enabled = false;
-                    bf.NextButton.Enabled = c.currBook.title;
+                    bf.NextButton.Enabled = c.currBook.Pages.Count > 1;
                     break;
                 case ViewState.IncreasingPage:
                     bool isLast;
-                    string page = c.nextPage(out isLast);
-                    bf.PageText.Text = page;
+                    string npage = c.nextPage(out isLast);
+                    bf.PageText.Text = npage;
                     bf.NextButton.Enabled = isLast;
                     bf.PageNumber.Text = (int.Parse(bf.PageNumber.Text) + 1).ToString();
                     Update(ViewState.GettingPageNumber);
                     break;
                 case ViewState.DecreasingPage:
                     bool isFirst;
-                    string page = c.prevPage(out isFirst);
-                    bf.PageText.Text = page;
+                    string ppage = c.prevPage(out isFirst);
+                    bf.PageText.Text = ppage;
                     bf.PrevButton.Enabled = isFirst;
                     bf.PageNumber.Text = (int.Parse(bf.PageNumber.Text) - 1).ToString();
                     Update(ViewState.GettingPageNumber);
@@ -96,6 +101,8 @@ namespace Question6
         {
             this.Hide();
             bf.Show();
+            this.currentBook = ((BookControl)sender).currentBook;
+            Debug.WriteLine(((BookControl)sender).currentBook);
             Update(ViewState.LoadingBook);
         }
 
@@ -124,6 +131,11 @@ namespace Question6
         {
             NumericUpDown tb = sender as NumericUpDown;
             pageSearch = int.Parse(tb.Text);
+        }
+
+        public void SetController(Controller c)
+        {
+            this.c = c;
         }
     }
 }

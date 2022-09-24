@@ -27,7 +27,11 @@ namespace Question6
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new View()); 
+            Model m = new Model();
+            View v = new View(m);
+            Controller c = new Controller(m, v);
+            v.SetController(c);
+            Application.Run(v); 
         }
     }
 }

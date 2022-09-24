@@ -12,11 +12,12 @@ namespace Question6
 {
     public partial class BookControl : UserControl
     {
-        private Book currentBook { get; set; }
+        public Book currentBook { get; private set; }
         public RichTextBox Title { get => UxTitle; }
         public BookControl(Book book)
         {
             InitializeComponent();
+            currentBook = book;
             UxTitle.Text = book.title;
         }
     }

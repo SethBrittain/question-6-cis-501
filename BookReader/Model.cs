@@ -12,7 +12,12 @@ namespace Question6
 
         public void CloudSync()
         {
-            using (StreamReader sr = new StreamReader("cloudfile.txt"))
+            string filename = "cloudfile.txt";
+            if (!(File.Exists(filename)))
+            {
+                File.CreateText(filename);
+            }
+            using (StreamReader sr = new StreamReader(filename))
             {
                 string text = sr.ReadToEnd();
                 string[] books = text.Split('~');
@@ -37,6 +42,7 @@ namespace Question6
                             b.AddPage(sb.ToString());
                             curChar = 0;
                             sb.Clear();
+                            cnt--;
                         }
                         else
                         {
@@ -44,6 +50,7 @@ namespace Question6
                             curChar++;
                         }
                     }
+                    this.books.Add(b);
                 }
             }
         }
