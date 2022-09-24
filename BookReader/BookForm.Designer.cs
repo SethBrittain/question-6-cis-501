@@ -58,7 +58,7 @@ namespace Question6
             this.UxLibraryLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
             this.UxLibraryLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 84F));
             this.UxLibraryLayout.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 8F));
-            this.UxLibraryLayout.Size = new System.Drawing.Size(584, 761);
+            this.UxLibraryLayout.Size = new System.Drawing.Size(584, 749);
             this.UxLibraryLayout.TabIndex = 0;
             // 
             // UxPrevPageButton
@@ -66,9 +66,9 @@ namespace Question6
             this.UxPrevPageButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UxPrevPageButton.Enabled = false;
             this.UxPrevPageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UxPrevPageButton.Location = new System.Drawing.Point(3, 702);
+            this.UxPrevPageButton.Location = new System.Drawing.Point(3, 691);
             this.UxPrevPageButton.Name = "UxPrevPageButton";
-            this.UxPrevPageButton.Size = new System.Drawing.Size(286, 56);
+            this.UxPrevPageButton.Size = new System.Drawing.Size(286, 55);
             this.UxPrevPageButton.TabIndex = 0;
             this.UxPrevPageButton.Text = "Previous Page";
             this.UxPrevPageButton.UseVisualStyleBackColor = true;
@@ -77,9 +77,9 @@ namespace Question6
             // 
             this.UxNextPageButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.UxNextPageButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UxNextPageButton.Location = new System.Drawing.Point(295, 702);
+            this.UxNextPageButton.Location = new System.Drawing.Point(295, 691);
             this.UxNextPageButton.Name = "UxNextPageButton";
-            this.UxNextPageButton.Size = new System.Drawing.Size(286, 56);
+            this.UxNextPageButton.Size = new System.Drawing.Size(286, 55);
             this.UxNextPageButton.TabIndex = 1;
             this.UxNextPageButton.Text = "Next Page";
             this.UxNextPageButton.UseVisualStyleBackColor = true;
@@ -90,7 +90,7 @@ namespace Question6
             this.UxBackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UxBackButton.Location = new System.Drawing.Point(3, 3);
             this.UxBackButton.Name = "UxBackButton";
-            this.UxBackButton.Size = new System.Drawing.Size(107, 54);
+            this.UxBackButton.Size = new System.Drawing.Size(107, 53);
             this.UxBackButton.TabIndex = 2;
             this.UxBackButton.Text = "Back";
             this.UxBackButton.UseVisualStyleBackColor = true;
@@ -107,7 +107,7 @@ namespace Question6
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(286, 54);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(286, 53);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // UxPageNumber
@@ -130,7 +130,7 @@ namespace Question6
             this.UxAddBookmarkButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UxAddBookmarkButton.Location = new System.Drawing.Point(3, 3);
             this.UxAddBookmarkButton.Name = "UxAddBookmarkButton";
-            this.UxAddBookmarkButton.Size = new System.Drawing.Size(137, 48);
+            this.UxAddBookmarkButton.Size = new System.Drawing.Size(137, 47);
             this.UxAddBookmarkButton.TabIndex = 1;
             this.UxAddBookmarkButton.Text = "Add Bookmark";
             this.UxAddBookmarkButton.UseVisualStyleBackColor = true;
@@ -140,11 +140,11 @@ namespace Question6
             this.UxLibraryLayout.SetColumnSpan(this.UxPageText, 2);
             this.UxPageText.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.UxPageText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UxPageText.Location = new System.Drawing.Point(15, 75);
+            this.UxPageText.Location = new System.Drawing.Point(15, 74);
             this.UxPageText.Margin = new System.Windows.Forms.Padding(15);
             this.UxPageText.Name = "UxPageText";
             this.UxPageText.ReadOnly = true;
-            this.UxPageText.Size = new System.Drawing.Size(554, 609);
+            this.UxPageText.Size = new System.Drawing.Size(554, 599);
             this.UxPageText.TabIndex = 4;
             this.UxPageText.Text = "";
             // 
@@ -152,7 +152,7 @@ namespace Question6
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 761);
+            this.ClientSize = new System.Drawing.Size(584, 749);
             this.Controls.Add(this.UxLibraryLayout);
             this.MinimumSize = new System.Drawing.Size(600, 700);
             this.Name = "BookForm";

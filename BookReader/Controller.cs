@@ -12,60 +12,66 @@ namespace Question6
 
         private View view;
 
+        public Book currBook;
+
         public Controller(Model m, View v)
         {
             model = m;
             view = v;
         }
 
-        public string nextPage(int index, out bool isLast)
+        public string nextPage(out bool isLast)
         {
-            if (model.books[index].CurrentPages() + 1 == model.books[index].GetTotalPages())
+            if (currBook.CurrentPage + 1 == currBook.GetTotalPages())
             {
                 isLast = true;
-                model.books[index].CurrentPages() += 1;
-                return pages;
+                currBook.CurrentPage += 1;
+                return currBook.pages[currBook.CurrentPage];
             }
             else
             {
-                model.books[index].CurrentPages() += 1;
+                isLast = false;
+                currBook.CurrentPage += 1;
+                return currBook.pages[currBook.CurrentPage];
             }
         }
 
-        public string prevPage(int index, out bool isFirst)
+        public string prevPage(out bool isFirst)
         {
-            if (model.books[index].CurrentPages() - 1 == 0)
+            if (currBook.CurrentPage - 1 == 0)
             {
                 isFirst = true;
-                model.books[index].CurrentPages() -= 1;
-                return pages;
+                currBook.CurrentPage -= 1;
+                return currBook.pages[currBook.CurrentPage];
             }
             else
             {
-                model.books[index].CurrentPages() -= 1;
+                isFirst = false;
+                currBook.CurrentPage -= 1;
+                return currBook.pages[currBook.CurrentPage];
             }
         }
 
-        public bool setMark(int index)
+        public bool setMark()
         {
-            foreach (int v in model.books[index].Marks)
+            foreach (int v in currBook.bookmarks)
             {
-                if (model.books[index].Marks[v] == -1)
+                if (currBook.bookmarks[v] == -1)
                 {
-                    model.books[index].Marks[v] = model.books[index].CurrentPages();
+                    currBook.bookmarks[v] = currBook.CurrentPage;
                     return false;
                 }
             }
             return true;
         }
 
-        public bool removeMark(int index)
+        public bool removeMark()
         {
-            foreach (int v in model.books[index].Marks)
+            foreach (int v in currBook.bookmarks)
             {
-                if (model.books[index].Marks[v] == model.books[index].CurrentPages())
+                if (currBook.bookmarks[v] == currBook.CurrentPage)
                 {
-                    model.books[index].Marks[v] = -1;
+                    currBook.bookmarks[v] = -1;
                     return false;
                 }
             }
@@ -74,9 +80,9 @@ namespace Question6
 
         public bool findPage(int index, int num)
         {
-            if (num <= model.books[index].GetTotalPages() && num >= 0)
+            if (num <= currBook.GetTotalPages() && num >= 0)
             {
-                model.books[index].CurrentPages() = num;
+                currBook.CurrentPage = num;
                 return false;
             }
             return false;

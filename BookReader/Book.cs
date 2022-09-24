@@ -11,9 +11,9 @@ namespace Question6
 
         private int currentPage = 1;
 
-        private int[] bookmarks = new int[5];
+        public int[] bookmarks = new int[5];
 
-        private String[] pages;
+        public String[] pages { get; }
 
         public Book(String title)
         {
@@ -21,11 +21,6 @@ namespace Question6
         }
 
         public int CurrentPage { get => currentPage; set => currentPage = value; }
-
-        public void AddBookmark(int index, int pageNumber)
-        {
-            bookmarks[index] = pageNumber;
-        }
 
         public int GetTotalPages()
         {
