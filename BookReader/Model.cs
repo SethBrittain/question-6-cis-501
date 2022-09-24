@@ -4,9 +4,9 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Text;
 
-namespace Model
+namespace Question6
 {
-    class Model
+    public class Model
     {
         public List<Book> books = new List<Book>();
 

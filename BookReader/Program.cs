@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace View
+namespace Question6
 {
     public enum ViewState
     {

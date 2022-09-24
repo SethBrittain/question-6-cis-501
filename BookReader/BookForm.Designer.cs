@@ -1,5 +1,5 @@
 ﻿
-namespace View
+namespace Question6
 {
     partial class BookForm
     {
