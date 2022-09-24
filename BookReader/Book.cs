@@ -7,29 +7,34 @@ namespace Question6
 {
     public class Book
     {
-        private String title;
+        public String title { get; private set; }
 
         private int currentPage = 1;
 
         private int[] bookmarks = new int[5];
 
-        private String[] pages;
+        private List<string> pages = new List<string>();
 
         public Book(String title)
         {
             this.title = title;
         }
 
+        public void AddPage(string page)
+        {
+            pages.Add(page);
+        }
+
         public int CurrentPage { get => currentPage; set => currentPage = value; }
 
-        public void AddBookmark(int index, int pageNumber)
+        public void SetBookmark(int index, string pageNumber)
         {
-            bookmarks[index] = pageNumber;
+            bookmarks[index] = Int32.Parse(pageNumber);
         }
 
         public int GetTotalPages()
         {
-            return pages.Length;
+            return pages.Count;
         }
     }
 }
