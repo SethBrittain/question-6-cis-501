@@ -34,11 +34,12 @@ namespace Question6
             this.UxNextPageButton = new System.Windows.Forms.Button();
             this.UxBackButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.UxPageNumber = new System.Windows.Forms.TextBox();
             this.UxAddBookmarkButton = new System.Windows.Forms.Button();
             this.UxPageText = new System.Windows.Forms.RichTextBox();
+            this.UxPageNumber = new System.Windows.Forms.NumericUpDown();
             this.UxLibraryLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UxPageNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // UxLibraryLayout
@@ -100,8 +101,8 @@ namespace Question6
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.UxPageNumber, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.UxAddBookmarkButton, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.UxPageNumber, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(295, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -109,20 +110,6 @@ namespace Question6
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(286, 54);
             this.tableLayoutPanel1.TabIndex = 3;
-            // 
-            // UxPageNumber
-            // 
-            this.UxPageNumber.BackColor = System.Drawing.SystemColors.Control;
-            this.UxPageNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.UxPageNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UxPageNumber.Enabled = false;
-            this.UxPageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UxPageNumber.Location = new System.Drawing.Point(146, 3);
-            this.UxPageNumber.Name = "UxPageNumber";
-            this.UxPageNumber.Size = new System.Drawing.Size(137, 42);
-            this.UxPageNumber.TabIndex = 0;
-            this.UxPageNumber.Text = "1";
-            this.UxPageNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // UxAddBookmarkButton
             // 
@@ -148,6 +135,16 @@ namespace Question6
             this.UxPageText.TabIndex = 4;
             this.UxPageText.Text = "";
             // 
+            // UxPageNumber
+            // 
+            this.UxPageNumber.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.UxPageNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UxPageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UxPageNumber.Location = new System.Drawing.Point(146, 3);
+            this.UxPageNumber.Name = "UxPageNumber";
+            this.UxPageNumber.Size = new System.Drawing.Size(137, 44);
+            this.UxPageNumber.TabIndex = 2;
+            // 
             // BookForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -159,7 +156,7 @@ namespace Question6
             this.Text = "BookView";
             this.UxLibraryLayout.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.UxPageNumber)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -171,8 +168,8 @@ namespace Question6
         private System.Windows.Forms.Button UxNextPageButton;
         private System.Windows.Forms.Button UxBackButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TextBox UxPageNumber;
         private System.Windows.Forms.Button UxAddBookmarkButton;
         private System.Windows.Forms.RichTextBox UxPageText;
+        private System.Windows.Forms.NumericUpDown UxPageNumber;
     }
 }

@@ -72,14 +72,16 @@ namespace Question6
             return true;
         }
 
-        public bool findPage(int index, int num)
+        public string findPage(int pageNum, out bool found)
         {
-            if (num <= model.books[index].GetTotalPages() && num >= 0)
+            found = true;
+            if (pageNum <= currBook.GetTotalPages() && pageNum > 0)
             {
-                model.books[index].CurrentPages() = num;
-                return false;
+                return currBook.Pages[pageNum-1];
             }
-            return false;
+
+            found = false;
+            return string.Empty;
         }
     }
 }
