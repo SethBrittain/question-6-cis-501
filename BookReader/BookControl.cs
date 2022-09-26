@@ -8,13 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace View
+namespace Question6
 {
-    public partial class View : Form
+    public partial class BookControl : UserControl
     {
-        public View()
+        public Book currentBook { get; private set; }
+        public RichTextBox Title { get => UxTitle; }
+        public BookControl(Book book)
         {
             InitializeComponent();
+            currentBook = book;
+            UxTitle.Text = book.title;
         }
     }
 }
