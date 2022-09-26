@@ -37,5 +37,16 @@ namespace Question6
         {
             return pages.Count;
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(string.Format("{0}`{1}`{2}`{3}`{4}`{5}`", title, bookmarks[0], bookmarks[1], bookmarks[2], bookmarks[3], bookmarks[4]));
+            foreach (string page in pages)
+            {
+                sb.Append(page);
+            }
+            return sb.ToString();
+        }
     }
 }

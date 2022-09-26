@@ -80,6 +80,7 @@ namespace Question6
             this.MinimumSize = new System.Drawing.Size(600, 700);
             this.Name = "View";
             this.Text = "LibraryView";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.View_FormClosed);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

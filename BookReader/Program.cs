@@ -15,7 +15,9 @@ namespace Question6
         IncreasingPage,
         DecreasingPage,
         AddingBookmark,
-        GettingPageNumber
+        GettingPageNumber,
+        FindingPage,
+        Saving
     }
     internal static class Program
     {

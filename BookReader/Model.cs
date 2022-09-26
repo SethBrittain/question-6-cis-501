@@ -37,7 +37,7 @@ namespace Question6
                     StringBuilder sb = new StringBuilder();
                     for (int cnt = 0; cnt < subs[6].Length; cnt++)
                     {
-                        if (curChar == 5)
+                        if (curChar == 2056)
                         {
                             b.AddPage(sb.ToString());
                             curChar = 0;
@@ -50,6 +50,7 @@ namespace Question6
                             curChar++;
                         }
                     }
+                    if (sb.Length > 0) b.AddPage(sb.ToString());
                     this.books.Add(b);
                 }
             }

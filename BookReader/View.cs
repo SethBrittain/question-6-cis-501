@@ -17,7 +17,6 @@ namespace Question6
         private Controller c;
         private Model model;
         private Book currentBook;
-        int pageSearch = 1;
 
         public View(Model m)
         {
@@ -56,15 +55,19 @@ namespace Question6
                     break;
                 case ViewState.LoadingBook:
                     c.currBook = this.currentBook;
+                    bf.PageNumber.Value = 1;
                     bf.PageText.Text = c.currBook.Pages[0];
                     bf.PrevButton.Enabled = false;
                     bf.NextButton.Enabled = c.currBook.Pages.Count > 1;
+                    bf.PageNumber.Maximum = c.currBook.GetTotalPages();
+                    Update(ViewState.FindingPage);
                     break;
                 case ViewState.IncreasingPage:
                     bool isLast;
                     string npage = c.nextPage(out isLast);
                     bf.PageText.Text = npage;
                     bf.NextButton.Enabled = isLast;
+                    bf.PrevButton.Enabled = true;
                     bf.PageNumber.Text = (int.Parse(bf.PageNumber.Text) + 1).ToString();
                     Update(ViewState.GettingPageNumber);
                     break;
@@ -73,13 +76,25 @@ namespace Question6
                     string ppage = c.prevPage(out isFirst);
                     bf.PageText.Text = ppage;
                     bf.PrevButton.Enabled = isFirst;
+                    bf.NextButton.Enabled = true;
                     bf.PageNumber.Text = (int.Parse(bf.PageNumber.Text) - 1).ToString();
                     Update(ViewState.GettingPageNumber);
                     break;
                 case ViewState.AddingBookmark:
-                    // Tell controller to add a bookmark on current page
+                    bf.BookmarkButton.Enabled = c.setMark();
+                    break;
                 case ViewState.GettingPageNumber:
-                    // bv.PageNumber.Text = controller.getPageNumber();
+                    bf.PageNumber.Value = (decimal)c.currBook.CurrentPage;
+                    break;
+                case ViewState.FindingPage:
+                    int pagen = (int)bf.PageNumber.Value;
+                    bf.PageText.Text = c.findPage((int)bf.PageNumber.Value);
+                    bf.PrevButton.Enabled = pagen != 1;
+                    bf.NextButton.Enabled = pagen != c.currBook.GetTotalPages();
+                    break;
+                case ViewState.Saving:
+                    c.saveBooks();
+                    break;
                 default:
                     break;
             }
@@ -101,8 +116,8 @@ namespace Question6
         {
             this.Hide();
             bf.Show();
-            this.currentBook = ((BookControl)sender).currentBook;
-            Debug.WriteLine(((BookControl)sender).currentBook);
+            if (sender is BookControl) this.currentBook = ((BookControl)sender).currentBook;
+            else { this.currentBook = ((BookControl)(((RichTextBox)sender).Parent)).currentBook; }
             Update(ViewState.LoadingBook);
         }
 
@@ -129,13 +144,17 @@ namespace Question6
 
         private void UxPageNumberChanged(object sender, EventArgs e)
         {
-            NumericUpDown tb = sender as NumericUpDown;
-            pageSearch = int.Parse(tb.Text);
+            Update(ViewState.FindingPage);
         }
 
         public void SetController(Controller c)
         {
             this.c = c;
+        }
+
+        private void View_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Update(ViewState.Saving);
         }
     }
 }

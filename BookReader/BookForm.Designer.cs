@@ -35,8 +35,8 @@ namespace Question6
             this.UxBackButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.UxAddBookmarkButton = new System.Windows.Forms.Button();
-            this.UxPageText = new System.Windows.Forms.RichTextBox();
             this.UxPageNumber = new System.Windows.Forms.NumericUpDown();
+            this.UxPageText = new System.Windows.Forms.RichTextBox();
             this.UxLibraryLayout.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UxPageNumber)).BeginInit();
@@ -122,11 +122,32 @@ namespace Question6
             this.UxAddBookmarkButton.Text = "Add Bookmark";
             this.UxAddBookmarkButton.UseVisualStyleBackColor = true;
             // 
+            // UxPageNumber
+            // 
+            this.UxPageNumber.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.UxPageNumber.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UxPageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UxPageNumber.Location = new System.Drawing.Point(146, 3);
+            this.UxPageNumber.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.UxPageNumber.Name = "UxPageNumber";
+            this.UxPageNumber.Size = new System.Drawing.Size(137, 44);
+            this.UxPageNumber.TabIndex = 2;
+            this.UxPageNumber.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // UxPageText
             // 
             this.UxLibraryLayout.SetColumnSpan(this.UxPageText, 2);
             this.UxPageText.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.UxPageText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.UxPageText.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UxPageText.Location = new System.Drawing.Point(15, 74);
             this.UxPageText.Margin = new System.Windows.Forms.Padding(15);
             this.UxPageText.Name = "UxPageText";
@@ -134,16 +155,6 @@ namespace Question6
             this.UxPageText.Size = new System.Drawing.Size(554, 599);
             this.UxPageText.TabIndex = 4;
             this.UxPageText.Text = "";
-            // 
-            // UxPageNumber
-            // 
-            this.UxPageNumber.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.UxPageNumber.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.UxPageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UxPageNumber.Location = new System.Drawing.Point(146, 3);
-            this.UxPageNumber.Name = "UxPageNumber";
-            this.UxPageNumber.Size = new System.Drawing.Size(137, 44);
-            this.UxPageNumber.TabIndex = 2;
             // 
             // BookForm
             // 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,48 +24,33 @@ namespace Question6
 
         public string nextPage(out bool isLast)
         {
-            if (currBook.CurrentPage + 1 == currBook.GetTotalPages())
-            {
-                isLast = true;
-                currBook.CurrentPage += 1;
-                Debug.WriteLine(currBook.Pages.Count);
-                return currBook.Pages[currBook.CurrentPage-1];
-            }
-            else
-            {
-                isLast = false;
-                currBook.CurrentPage += 1;
-                return currBook.Pages[currBook.CurrentPage-1];
-            }
+            currBook.CurrentPage++;
+            Debug.WriteLine(currBook.CurrentPage);
+            isLast = currBook.CurrentPage + 1 == currBook.GetTotalPages();
+            Debug.WriteLine(currBook.GetTotalPages());
+            return currBook.Pages[currBook.CurrentPage-1];
         }
 
         public string prevPage(out bool isFirst)
         {
-            if (currBook.CurrentPage - 1 == 0)
-            {
-                isFirst = true;
-                currBook.CurrentPage -= 1;
-                return currBook.Pages[currBook.CurrentPage];
-            }
-            else
-            {
-                isFirst = false;
-                currBook.CurrentPage -= 1;
-                return currBook.Pages[currBook.CurrentPage];
-            }
+            currBook.CurrentPage--;
+            Debug.WriteLine(currBook.CurrentPage);
+            isFirst = currBook.CurrentPage - 1 == 1;
+            Debug.WriteLine(currBook.GetTotalPages());
+            return currBook.Pages[currBook.CurrentPage-1];
         }
 
         public bool setMark()
         {
-            foreach (int v in currBook.bookmarks)
+            for (int i=0; i < currBook.bookmarks.Length; i++)
             {
-                if (currBook.bookmarks[v] == -1)
+                if (currBook.bookmarks[i] == -1)
                 {
-                    currBook.bookmarks[v] = currBook.CurrentPage;
-                    return false;
+                    currBook.bookmarks[i] = currBook.CurrentPage;
+                    break;
                 }
             }
-            return true;
+            return currBook.bookmarks[4] == -1;
         }
 
         public bool removeMark()
@@ -80,16 +66,24 @@ namespace Question6
             return true;
         }
 
-        public string findPage(int pageNum, out bool found)
+        public string findPage(int pageNum)
         {
-            found = true;
-            if (pageNum <= currBook.GetTotalPages() && pageNum > 0)
-            {
-                return currBook.Pages[pageNum-1];
-            }
+            if (pageNum <= currBook.GetTotalPages() && pageNum > 0) currBook.CurrentPage = pageNum;
+            return currBook.Pages[currBook.CurrentPage - 1];
+        }
 
-            found = false;
-            return string.Empty;
+        public void saveBooks()
+        {
+            using (StreamWriter sw = new StreamWriter("cloudfile.txt"))
+            {
+                int bookCount = 0;
+                foreach (Book b in model.books)
+                {
+                    sw.Write(b.ToString());
+                    bookCount++;
+                    if (bookCount < model.books.Count) sw.Write("~");
+                }
+            }
         }
     }
 }
